@@ -9,7 +9,8 @@ class Piece(pygame.sprite.Sprite):
         super().__init__()
         self.Player = Player
         self.colour = colour.RGB()
-        getattr(self.colour, self.Player.colour)                                #getattr(self.colour, 'White') = self.colour.White()
+        func = getattr(self.colour, self.Player.colour)                         #func = getattr(self.colour, 'White') = self.colour.White
+        func()                                                                  #func() = self.colour.White()
         self.shape = 'O'
         self.size = 25
         self.x = mousex
