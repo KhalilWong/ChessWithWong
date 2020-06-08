@@ -35,7 +35,7 @@ def Draw_Board(settings, screen):
     screen.blit(Board_Surface, (0, 0))
 
 ################################################################################
-def Check_Events(Mouse, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Piece, Player0, MousePlayer, CurrentTurn):
+def Check_Events(Mouse, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Pieces, Player0, MousePlayer, CurrentTurn):
     #
     for event in pygame.event.get():
         if event.type == pygame.QUIT or (event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE):
@@ -46,6 +46,9 @@ def Check_Events(Mouse, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Piece,
             #
             Mouse_Piece = piece.Piece(MousePlayer, Mouse.x, Mouse.y)
             Mouse_Piece.Attach_to_Board(BoardGridX, BoardGridY, BoardGrids)
+            Mouse_Pieces.empty()
+            if Mouse_Piece.Exist:
+                Mouse_Pieces.add(Mouse_Piece)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             Mouse.x, Mouse.y = event.pos
             Mouse.Clicked = True
@@ -59,7 +62,7 @@ def Check_Events(Mouse, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Piece,
         elif event.type == pygame.MOUSEBUTTONUP:
             Mouse.x, Mouse.y = event.pos
             Mouse.Clicked = False
-        #
+
 ################################################################################
 def Count_Grids(BoardGrids):
     #
@@ -223,13 +226,13 @@ def Check_Game(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Pla
 def GameOver(settings, screen, mess, Pieces, Win_Pieces = None):
     #
     if Win_Pieces:
-        for i in range(50):
+        for i in range(20):
             if i % 2 == 0:
                 Win_Pieces.update(screen)
             else:
                 Pieces.update(screen)
             pygame.display.update()
-            pygame.time.wait(200)
+            pygame.time.wait(100)
     #
     #ZiTis = pygame.font.get_fonts()
     #for ziti in ZiTi:
@@ -242,18 +245,19 @@ def GameOver(settings, screen, mess, Pieces, Win_Pieces = None):
     textRect.center = (settings.screen_width / 2, settings.screen_height / 2)
     screen.blit(textSurface, textRect)
     pygame.display.update()
-    pygame.time.wait(3000)
+    pygame.time.wait(2000)
     #
     pygame.quit()
     sys.exit()
 
 ################################################################################
-def Update_Screen(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Piece, Player0, AI0):
+def Update_Screen(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Pieces, Player0, AI0):
     #
     screen.fill((settings.background_colour.R, settings.background_colour.G, settings.background_colour.B))
     Draw_Board(settings, screen)
     Pieces.update(screen)
-    Mouse_Piece.update(screen, True)
+    #print(Mouse_Piece.GX, Mouse_Piece.GY)
+    Mouse_Pieces.update(screen, True)
     Check_Game(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Player0, AI0)
     pygame.display.update()                                                     #Update portions of the screen for software displays. If no argument is passed it updates the entire Surface area like pygame.display.flip().
     #pygame.display.flip()                                                      #Update the full display Surface to the screen

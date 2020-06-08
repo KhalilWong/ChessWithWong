@@ -6,4 +6,4 @@
 
 cd ...\ChessWithWong
 
-pyinstaller -F -w ChesswithWong.py ai.py colour.py functions.py piece.py settings.py usercontrol.py
+pyinstaller -F -w ChesswithWong.py ai.py colour.py functions.py piece.py player.py settings.py usercontrol.py

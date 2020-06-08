@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['ChesswithWong.py', 'ai.py', 'colour.py', 'functions.py', 'piece.py', 'settings.py', 'usercontrol.py'],
+a = Analysis(['ChesswithWong.py', 'ai.py', 'colour.py', 'functions.py', 'piece.py', 'player.py', 'settings.py', 'usercontrol.py'],
              pathex=['C:\\Users\\user\\OneDrive\\Python\\Dyeing'],
              binaries=[],
              datas=[],
@@ -30,4 +30,4 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=False )
+          console=True )

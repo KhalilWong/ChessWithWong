@@ -32,13 +32,13 @@ def main():
     CurrentTurn = [0]
     #
     Pieces = pygame.sprite.Group()
-    Mouse_Piece = piece.Piece(MP, 0, 0)
+    Mouse_Pieces = pygame.sprite.Group()
     while True:
         #
-        functions.Check_Events(userMouse, GridX, GridY, Grids, Pieces, Mouse_Piece, P0, MP, CurrentTurn)
+        functions.Check_Events(userMouse, GridX, GridY, Grids, Pieces, Mouse_Pieces, P0, MP, CurrentTurn)
         ai.AI_Player(The_Settings, GridX, GridY, Grids, Pieces, A0, CurrentTurn)
         #
-        functions.Update_Screen(The_Settings, Dis_Surface, GridX, GridY, Grids, Pieces, Mouse_Piece, P0, A0)
+        functions.Update_Screen(The_Settings, Dis_Surface, GridX, GridY, Grids, Pieces, Mouse_Pieces, P0, A0)
         #
         fpsClock.tick(The_Settings.FPS)
 
