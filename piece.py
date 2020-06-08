@@ -50,5 +50,4 @@ class Piece(pygame.sprite.Sprite):
                 pygame.draw.circle(screen_alpha, (self.colour.R, self.colour.G, self.colour.B, 128), (self.x, self.y), self.size, 0)
                 screen.blit(screen_alpha, (0, 0))
             else:
-                print(self.colour.R, self.size)
                 pygame.draw.circle(screen, (self.colour.R, self.colour.G, self.colour.B), (self.x, self.y), self.size, 0)

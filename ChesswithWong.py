@@ -38,7 +38,7 @@ def main():
         functions.Check_Events(userMouse, GridX, GridY, Grids, Pieces, Mouse_Piece, P0, MP, CurrentTurn)
         ai.AI_Player(The_Settings, GridX, GridY, Grids, Pieces, A0, CurrentTurn)
         #
-        functions.Update_Screen(The_Settings, Dis_Surface, GridX, GridY, Grids, Pieces, Mouse_Piece)
+        functions.Update_Screen(The_Settings, Dis_Surface, GridX, GridY, Grids, Pieces, Mouse_Piece, P0, A0)
         #
         fpsClock.tick(The_Settings.FPS)
 

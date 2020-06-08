@@ -8,15 +8,15 @@ import player
 ################################################################################
 def Create_BoardGrids(settings):
     #
-    BoardGridX = np.zeros((settings.board_width, 3))
+    BoardGridX = np.zeros((settings.board_width, 3), dtype=int)
     for i in range(settings.board_width):
-        BoardGridX[i, :] = np.array([settings.XMargin + i * settings.board_size + (i + 1) * settings.gap_size, int(settings.XMargin + (i + 1) * (settings.board_size + settings.gap_size) - settings.board_size / 2), settings.XMargin + (i + 1) * (settings.board_size + settings.gap_size)])
+        BoardGridX[i, :] = np.array([settings.XMargin + i * settings.board_size + (i + 1) * settings.gap_size, int(settings.XMargin + (i + 1) * (settings.board_size + settings.gap_size) - settings.board_size / 2), settings.XMargin + (i + 1) * (settings.board_size + settings.gap_size)], dtype=int)
     #
-    BoardGridY = np.zeros((settings.board_height, 3))
+    BoardGridY = np.zeros((settings.board_height, 3), dtype=int)
     for j in range(settings.board_height):
-        BoardGridY[j, :] = np.array([settings.YMargin + j * settings.board_size + (j + 1) * settings.gap_size, int(settings.YMargin + (j + 1) * (settings.board_size + settings.gap_size) - settings.board_size / 2), settings.YMargin + (j + 1) * (settings.board_size + settings.gap_size)])
+        BoardGridY[j, :] = np.array([settings.YMargin + j * settings.board_size + (j + 1) * settings.gap_size, int(settings.YMargin + (j + 1) * (settings.board_size + settings.gap_size) - settings.board_size / 2), settings.YMargin + (j + 1) * (settings.board_size + settings.gap_size)], dtype=int)
     #-1为空，0为玩家，1为AI，-2为鼠标位置
-    BoardGrids = np.ones((settings.board_height, settings.board_width)) * (-1)
+    BoardGrids = np.ones((settings.board_height, settings.board_width), dtype=int) * (-1)
     #
     return(BoardGridX, BoardGridY, BoardGrids)
 
@@ -76,7 +76,7 @@ def Count_Grids(BoardGrids):
     return(BoardGridFilled, BoardGridUnFilled)
 
 ################################################################################
-def Check_Game(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces):
+def Check_Game(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Player0, AI0):
     #
     NY, NX = BoardGrids.shape
     NP = int(np.max(BoardGrids) + 1)                                            #玩家数 = 玩家 + AI
@@ -248,12 +248,12 @@ def GameOver(settings, screen, mess, Pieces, Win_Pieces = None):
     sys.exit()
 
 ################################################################################
-def Update_Screen(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Piece):
+def Update_Screen(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Mouse_Piece, Player0, AI0):
     #
     screen.fill((settings.background_colour.R, settings.background_colour.G, settings.background_colour.B))
     Draw_Board(settings, screen)
     Pieces.update(screen)
     Mouse_Piece.update(screen, True)
-    Check_Game(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces)
+    Check_Game(settings, screen, BoardGridX, BoardGridY, BoardGrids, Pieces, Player0, AI0)
     pygame.display.update()                                                     #Update portions of the screen for software displays. If no argument is passed it updates the entire Surface area like pygame.display.flip().
     #pygame.display.flip()                                                      #Update the full display Surface to the screen
