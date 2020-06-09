@@ -50,7 +50,7 @@ class RGB():
         self.R = 128
         self.G = 0
         self.B = 128
-    def LuYingPurple(self):
+    def LYPurple(self):
         #
         self.R = 170
         self.G = 43

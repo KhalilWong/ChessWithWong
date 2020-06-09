@@ -8,7 +8,7 @@ class Settings():
         self.screen_width = 1280
         self.screen_height = 720
         self.background_colour = colour.RGB()
-        self.background_colour.LuYingPurple()
+        self.background_colour.LYPurple()
         self.frame_colour = colour.RGB()
         self.frame_colour.Cyan()
         self.FPS = 60
